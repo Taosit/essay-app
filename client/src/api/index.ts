@@ -5,7 +5,8 @@ export const fetcher = async <T>(
   method: HttpMethod = "get",
   body?: T
 ) => {
-  const response = await fetch(`${import.meta.env.VITE_API_URL}${url}`, {
+  const baseUrl = import.meta.env.PROD ? '/api' : import.meta.env.VITE_API_URL;
+  const response = await fetch(`${baseUrl}${url}`, {
     method,
     ...(body && { headers: { "Content-Type": "application/json" } }),
     ...(body && { body: JSON.stringify(body) }),

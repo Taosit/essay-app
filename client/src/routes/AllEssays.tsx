@@ -10,7 +10,7 @@ export const AllEssays = () => {
 
   return (
     <div>
-      <Link to="/write">Write</Link>
+      <Link to="/write" className="write-button">Write</Link>
       <div className="essay-grid">
         {essays.map((essay) => (
           <div key={essay.id} className="essay-card">
