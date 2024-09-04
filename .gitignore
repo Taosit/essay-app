@@ -1,0 +1,35 @@
+# .NET build and development artifacts
+bin/
+obj/
+out/
+
+# IDE directories
+.ionide/
+.vscode/
+.idea/
+
+# macOS specific files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# OmniSharp and generated solution files
+*.generated.sln
+
+# SQLite database files
+*.db
+*.db-shm
+*.db-wal
+
+# NuGet Packages
+*.nupkg
+*.snupkg
+.nuget/
+
+node_modules
+dist
+dist-ssr
+*.local
+*.env.development
+*.env.production
+
