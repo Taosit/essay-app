@@ -19,12 +19,12 @@ export const WriteEssay = () => {
   return (
     <div className="container">
       <form onSubmit={handleSubmit} className="essay-form">
-        <div className="header">
+        <div className="essay-header">
+          <Timer />
           <QuestionHeader
             questionText={questionText}
             setQuestionText={setQuestionText}
           />
-          <Timer />
         </div>
         <div className="essay-area">
           <EssayArea essayText={essayText} setEssayText={setEssayText} />

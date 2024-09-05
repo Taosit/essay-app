@@ -9,8 +9,10 @@ export const AllEssays = () => {
   }
 
   return (
-    <div>
-      <Link to="/write" className="write-button">Write</Link>
+    <div className="container">
+      <Link to="/write" className="navigation-button">
+        Write a New Essay
+      </Link>
       <div className="essay-grid">
         {essays.map((essay) => (
           <div key={essay.id} className="essay-card">

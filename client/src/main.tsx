@@ -9,26 +9,43 @@ import { WriteEssay } from "./routes/WriteEssay";
 
 import "./index.css";
 import { fetcher } from "./api";
+import { RouteWrapper } from "./components/RouteWrapper";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <AllEssays />,
+    element: (
+      <RouteWrapper>
+        <AllEssays />
+      </RouteWrapper>
+    ),
     loader: () => fetcher("/Essay"),
   },
   {
     path: "/essays/:id",
-    element: <EssayPage />,
+    element: (
+      <RouteWrapper>
+        <EssayPage />
+      </RouteWrapper>
+    ),
     loader: ({ params }) => fetcher(`/Essay/${params.id}`),
   },
   {
     path: "/essays/:id/correction",
-    element: <EssayCorrectionPage />,
+    element: (
+      <RouteWrapper>
+        <EssayCorrectionPage />
+      </RouteWrapper>
+    ),
     loader: ({ params }) => fetcher(`/Essay/${params.id}`),
   },
   {
     path: "/write",
-    element: <WriteEssay />,
+    element: (
+      <RouteWrapper>
+        <WriteEssay />
+      </RouteWrapper>
+    ),
   },
 ]);
 

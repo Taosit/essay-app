@@ -8,8 +8,8 @@ export default function QuestionHeader({
   setQuestionText,
 }: Props) {
   return (
-    <div className="question-header">
-      <label className="label" htmlFor="question">
+    <div className="question">
+      <label className="primary-text" htmlFor="question">
         Question
       </label>
       <input

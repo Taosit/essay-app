@@ -33,7 +33,7 @@ export default function Timer() {
   return (
     <div className="timer">
       <p>{formatTime(time)}</p>
-      {!timerRunning && <button onClick={handleStart}>Start</button>}
+      {!timerRunning && <button className="primary-button" onClick={handleStart}>Start</button>}
     </div>
   );
 }

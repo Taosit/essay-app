@@ -12,7 +12,7 @@ export default function EssayArea({ essayText, setEssayText }: Props) {
 
   return (
     <>
-      <label className="label" htmlFor="essay">
+      <label className="primary-text" htmlFor="essay">
         Essay
       </label>
       <textarea
@@ -23,10 +23,10 @@ export default function EssayArea({ essayText, setEssayText }: Props) {
       <div className="footer">
         <p className="word-count">Words: {wordCount}</p>
         <div className="button-container">
-          <button type="button" className="copy" onClick={handleCopy}>
+          <button type="button" className="secondary-button" onClick={handleCopy}>
             Copy
           </button>
-          <button>Submit</button>
+          <button className="primary-button">Submit</button>
         </div>
       </div>
     </>

@@ -1,3 +1,23 @@
+:root {
+  --primary-color: #3498db;
+  --primary-hover-color: #2980b9;
+  --background-color: #f4f4f9;
+  --text-color: #333;
+  --muted-text-color: #666;
+  --white-color: #ffffff;
+  --box-shadow-color: rgba(0, 0, 0, 0.1);
+  --border-color: #ccc;
+  --error-color: #e74c3c;
+
+  --nav-height: 50px;
+}
+
+@media (min-width: 1100px) {
+  :root {
+    --nav-height: 60px;
+  }
+}
+
 * {
   box-sizing: border-box;
 }
@@ -7,19 +27,9 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #f5f5f5;
-}
-
-* {
-  box-sizing: border-box;
-}
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  color: #333;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
 }
 p {
   margin: 0;
@@ -33,70 +43,152 @@ h6 {
   margin: 0;
 }
 
-dialog {
-  position: fixed;
-  top: 1rem;
-  z-index: 1000;
+button {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  border-radius: 4px;
+  padding: 0.325rem 1rem;
+  font-size: 1rem;
 }
 
-/* new essay */
+textarea {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+.primary-button {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+}
+
+.secondary-button {
+  color: var(--muted-text-color);
+}
+
+.navigation-button {
+  display: inline-block;
+  padding: 0.3rem 0.7rem;
+  background-color: var(--white-color);
+  color: var(--primary-color);
+  font-size: 1.1rem;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  border: 1px solid var(--primary-color);
+}
+
+@media (min-width: 1100px) {
+  .navigation-button {
+    font-size: 1.2rem;
+    padding: 0.5rem 0.8rem;
+  }
+}
+
+.navigation-button:hover {
+  text-decoration: none;
+}
+
+.primary-text {
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
 
 .container {
   margin: 0 auto;
-  width: 800px;
+  width: 1200px;
   max-width: 90vw;
-  padding: 1rem;
-  height: 100vh;
+  height: calc(100vh - var(--nav-height));
+  padding: 1.5rem 0 1rem;
 }
+
+nav {
+  background-color: var(--primary-color);
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+}
+
+.nav-content {
+  margin: 0 auto;
+  width: 1200px;
+  max-width: 90vw;
+  color: var(--white-color);
+  font-size: 1.35rem;
+}
+
+.spacing-large {
+  padding-top: 1.5rem;
+}
+
+.spacing-small {
+  padding-top: 0.75rem;
+}
+
+/* new essay */
 .essay-form {
   display: flex;
   flex-direction: column;
   height: 100%;
 }
-.header {
+
+.essay-header {
   margin-bottom: 1rem;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
+
 input[type="file"] {
   display: none;
 }
+
 img {
   max-width: 100%;
   margin-top: 1rem;
 }
+
 .timer {
-  position: absolute;
-  right: -8rem;
-  top: 0;
   border: 1px solid #ccc;
   border-radius: 4px;
   padding: 0.5rem 1rem;
   display: flex;
-  flex-direction: column;
   align-items: center;
-}
-.question-header {
-  display: flex;
+  justify-content: flex-end;
   gap: 1rem;
-  align-items: center;
 }
-.file-button,
-button {
-  cursor: pointer;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 0.25rem 1rem;
-  font-size: 1rem;
+
+@media (min-width: 1100px) {
+  .essay-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .question {
+    flex: 1;
+  }
+
+  .timer {
+    order: 2;
+    flex-direction: column;
+    width: 100px;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+  }
 }
+
 .essay-area {
   display: flex;
   flex: 1;
   flex-direction: column;
 }
-.label {
-  display: block;
-  font-weight: bold;
-}
+
 input[type="text"],
 textarea {
   border: 1px solid #ccc;
@@ -107,117 +199,294 @@ textarea {
   flex: 1;
   margin-top: 0.5rem;
 }
+
 input[type="text"]:focus,
 textarea:focus {
   outline: 1px solid #a5a5a5;
 }
+
 textarea {
   height: 200px;
   resize: none;
 }
+
 .footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 1rem;
 }
+
 .button-container {
   display: flex;
   gap: 1rem;
 }
+
 .word-count {
   margin-top: 0.5rem;
 }
+
 .display-none {
   display: none;
 }
 
 /* essays */
 
-.write-button {
-  cursor: pointer;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 0.25rem 1rem;
-  font-size: 1rem;
-  text-decoration: none;
-}
-
 .essay-grid {
+  margin-top: 1rem;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1rem;
 }
 
 .essay-card {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-bottom: 1rem;
+  background: var(--white-color);
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 4px 8px var(--box-shadow-color);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.essay-card > a {
-  display: block;
-  padding: 1rem;
+.essay-card:hover {
+  box-shadow: 0 6px 12px var(--box-shadow-color);
+}
+
+.essay-card:hover a {
+  text-decoration: none;
+}
+
+.essay-card h2 {
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.essay-card .essay-description {
+  font-size: 0.95rem;
+  color: var(--muted-text-color);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 4.5em;
+}
+
+a {
   text-decoration: none;
   color: inherit;
 }
 
-.essay-card h2 {
-  margin-bottom: 1rem;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.essay-card p {
-  display: -webkit-box;
-  line-clamp: 3;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+a:hover {
+  text-decoration: underline;
 }
 
 /* essay display */
 
-.essay-page-header {
+.essay-page-actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 1.5rem;
+}
+
+.essay-page-actions a {
+  color: var(--primary-color);
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+.essay-page-header a:hover {
+  text-decoration: underline;
+}
+
+.delete-button {
+  background-color: var(--error-color);
+  color: var(--white-color);
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.essay-correction-select {
+  display: flex;
+  gap: 1rem;
   margin-bottom: 1rem;
 }
 
+.essay-correction-select label {
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.essay-correction-select input {
+  margin-right: 0.5rem;
+}
+
+.essay-content h3 {
+  color: var(--primary-color);
+  margin-bottom: 0.75rem;
+}
+
 .essay-body-overlay {
-  position: relative;
+  margin-top: 0.25rem;
+  background: var(--white-color);
+  padding: 1rem 0.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px var(--box-shadow-color);
 }
 
-.essay-body-corrected {
-  position: absolute;
+@media (min-width: 600px) {
+  .essay-body-overlay {
+    padding: 1rem 0.75rem;
+  }
 }
 
-mark {
-  background-color: rgba(240, 150, 150, 0.409);
+.essay-body-corrected p {
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.essay-body-corrected mark {
+  background-color: rgba(255, 0, 0, 0.2);
+  color: var(--text-color);
   border-radius: 2px;
-}
-
-.wrong-text {
-  text-decoration: line-through;
-  text-decoration-color: rgb(143, 0, 0);
 }
 
 .corrected-text {
-  background-color: rgba(141, 219, 141, 0.435);
-  margin-inline: 0.1rem;
-  padding-inline: 0.1rem;
-  border-radius: 2px;
+  color: var(--primary-hover-color);
+  font-weight: bold;
+  margin-left: 0.5rem;
+}
+
+.essay-correction-select input[type="radio"] {
+  display: none;
+}
+
+.essay-correction-select label {
+  padding: 0.5rem 1rem;
+  background-color: var(--white-color);
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  margin: 0;
+}
+
+.essay-correction-select label + label {
+  border-left: none;
+}
+
+.essay-correction-select input[type="radio"]:checked + label {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+}
+
+.essay-correction-select label:hover {
+  background-color: var(--primary-hover-color);
+  color: var(--white-color);
 }
 
 .comment {
-  background-color: rgba(137, 204, 235, 0.572);
-  margin-inline: 0.1rem;
-  padding-inline: 0.1rem;
-  border-radius: 2px;
+  display: inline;
+  font-style: italic;
+  color: var(--muted-text-color);
+  font-size: 0.9rem;
+  margin-left: 0.5rem;
+}
+
+.back-link {
+  text-decoration: none;
+  color: var(--primary-color);
+  font-size: 1rem;
+  border-bottom: 1px solid var(--primary-color);
+  transition: color 0.2s ease, border-bottom-color 0.2s ease;
+}
+
+.back-link:hover {
+  text-decoration: none;
+  color: var(--primary-hover-color);
+  border-bottom-color: var(--primary-hover-color);
 }
 
 .pointer {
   cursor: pointer;
+}
+
+/* Correction Dialog */
+dialog {
+  position: fixed;
+  top: 4rem;
+  z-index: 1000;
+
+  width: 80%;
+  max-width: 600px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: var(--white-color);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+dialog p {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
+
+dialog textarea {
+  width: 100%;
+  height: 3rem;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  resize: none;
+}
+
+dialog textarea:last-of-type {
+  height: 4rem;
+}
+
+dialog div {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+dialog button {
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  color: var(--button-text);
+  background-color: transparent;
+}
+
+dialog button.save-button {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+dialog button.remove-button {
+  color: var(--error-color);
+}
+
+dialog button.cancel-button {
+  color: var(--muted-text-color);
 }

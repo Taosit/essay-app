@@ -193,9 +193,9 @@ export const Essay = ({
 
   return (
     <div>
-      <h3>Question</h3>
+      <h3 className="primary-text">Question</h3>
       <p>{essay.question}</p>
-      <h3>Essay</h3>
+      <h3 className="primary-text">Essay</h3>
       <div className="essay-body-overlay">
         <div className="essay-body-corrected">
           {paragraphsWithCorrections.map((paragraph, paragraphIndex) => (
@@ -250,20 +250,28 @@ export const Essay = ({
         <dialog open>
           <p>{selection.selectedText}</p>
           <textarea
+            placeholder="Corrected text"
             value={correctedText}
             onChange={(event) => setCorrectedText(event.target.value)}
             ref={correctionInputRef}
           />
           <textarea
+            placeholder="Comment"
             value={comment}
             onChange={(event) => setComment(event.target.value)}
           />
           <div>
-            <button onClick={saveCorrection}>Save</button>
+            <button className="save-button" onClick={saveCorrection}>
+              Save
+            </button>
             {operation === "Edit" && (
-              <button onClick={removeCorrection}>Remove</button>
+              <button className="remove-button" onClick={removeCorrection}>
+                Remove
+              </button>
             )}
-            <button onClick={cancelCorrection}>Cancel</button>
+            <button className="cancel-button" onClick={cancelCorrection}>
+              Cancel
+            </button>
           </div>
         </dialog>
       )}

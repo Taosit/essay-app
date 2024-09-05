@@ -11,8 +11,12 @@ export const EssayCorrectionPage = () => {
   }
 
   return (
-    <div>
-      <Link to={`/essays/${params.id}`}>Back to essay</Link>
+    <div className="container">
+      <Link className="back-link" to={`/essays/${params.id}`}>
+        Back to essay
+      </Link>
+      <div className="spacing-small" />
+      <div className="spacing" />
       <Essay essay={essay} isEditable showCorrectedEssay />
     </div>
   );

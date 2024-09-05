@@ -28,19 +28,19 @@ export const EssayPage = () => {
   };
 
   return (
-    <div>
-      <div className="essay-page-header">
+    <div className="container">
+      <EssayWithToggles essay={essay} />
+      <div className="essay-page-actions">
         <div>
-          <Link to="/">All essays</Link>
-          <br />
           <Link to={`/essays/${id}/correction`}>Correct this essay</Link>
         </div>
         <div>
           <input type="hidden" name="essayId" value={params.id} />
-          <button onClick={handleDelete}>Delete</button>
+          <button className="delete-button" onClick={handleDelete}>
+            Delete
+          </button>
         </div>
       </div>
-      <EssayWithToggles essay={essay} />
     </div>
   );
 };
