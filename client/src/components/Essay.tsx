@@ -7,7 +7,7 @@ import {
   putCorrection,
 } from "../api/correction";
 
-type Selection = {
+type UserSelection = {
   paragraphNumber: number;
   start: number;
   end: number;
@@ -27,7 +27,7 @@ export const Essay = ({
   showWrongText = false,
   showCorrectedEssay = false,
 }: EssayProps) => {
-  const [selection, setSelection] = useState<Selection | null>(null);
+  const [selection, setSelection] = useState<UserSelection | null>(null);
   const [correctedText, setCorrectedText] = useState("");
   const [comment, setComment] = useState("");
   const [corrections, setCorrections] = useState(essay.corrections || []);
@@ -53,10 +53,31 @@ export const Essay = ({
     corrections
   );
 
+  function wrapSelection(selection: Selection) {
+    const range = selection.getRangeAt(0);
+    const span = document.createElement("span");
+    span.style.cursor = "pointer";
+    span.id = "temp-selection";
+    span.appendChild(range.extractContents());
+    range.insertNode(span);
+    return span;
+  }
+
+  function unwrapSpan() {
+    const span = document.querySelector("span#temp-selection");
+
+    if (!span) return;
+    const parent = span.parentNode as HTMLParagraphElement;
+    while (span.firstChild) {
+      parent.insertBefore(span.firstChild, span);
+    }
+    parent.removeChild(span);
+  }
+
   const handleMouseUp = (paragraphNumber: number) => {
     if (!isEditable) return;
     const selection = window.getSelection();
-    if (!selection) return;
+    if (!selection || selection.rangeCount === 0) return;
     const { anchorOffset, focusOffset } = selection;
     let start = Math.min(anchorOffset, focusOffset);
     let end = Math.max(anchorOffset, focusOffset);
@@ -69,26 +90,36 @@ export const Essay = ({
     }
     const selectedText = selection.toString();
 
-    const handleKeyDown = (event: globalThis.KeyboardEvent) => {
-      if (event.key === "Enter") {
-        event.preventDefault();
-        setOperation("Add");
-        setSelection({
-          paragraphNumber,
-          start,
-          end,
-          selectedText,
-        });
-      }
+    const addSelection = () => {
+      setOperation("Add");
+      setSelection({
+        paragraphNumber,
+        start,
+        end,
+        selectedText,
+      });
     };
 
-    window.addEventListener("keydown", handleKeyDown, { once: true });
+    const span = wrapSelection(selection);
+    span.addEventListener("click", addSelection);
+
+    window.addEventListener(
+      "keydown",
+      (event) => {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          addSelection();
+        }
+      },
+      { once: true }
+    );
   };
 
   const resetCorrection = () => {
     setSelection(null);
     setCorrectedText("");
     setComment("");
+    unwrapSpan();
   };
 
   const saveCorrection = () => {
@@ -133,7 +164,6 @@ export const Essay = ({
 
     setCorrections(newCorrections);
     const { id } = (await postCorrection(newCorrection)) as { id: number };
-    console.log("id", id);
     const updatedCorrections = newCorrections.map((c) =>
       c.id === temperaryId ? { ...c, id } : c
     );

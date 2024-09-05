@@ -18,9 +18,10 @@ export const EssayCorrectionPage = () => {
       <div className="spacing-small" />
       <div className="prompt">
         To correct a word or a phrase,{" "}
-        <span className="select-span">select</span> the content and press{" "}
-        <img className="enter-icon" src="/enter.svg" alt="Enter key" />. Then
-        you can add a correction and optionally a comment.
+        <span className="select-span">select</span> the content and click{" "}
+        <img className="enter-icon" src="/click.svg" alt="Click" /> on the
+        selection. Then you can add a correction and optionally a comment. Once
+        you've made a correction, you can edit it by clicking on the correction.
       </div>
       <Essay essay={essay} isEditable showCorrectedEssay />
     </div>

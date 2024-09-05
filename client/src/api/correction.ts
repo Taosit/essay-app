@@ -2,7 +2,6 @@ import { fetcher } from ".";
 import { Correction } from "../types";
 
 export const postCorrection = async (correction: Omit<Correction, "id">) => {
-  console.log("correction", correction);
   return await fetcher(`/Correction`, "post", correction);
 };
 
