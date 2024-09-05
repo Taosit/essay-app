@@ -5,6 +5,7 @@
   --text-color: #333;
   --muted-text-color: #666;
   --white-color: #ffffff;
+  --white-faded-color: rgba(255, 255, 255, 0.9);
   --box-shadow-color: rgba(0, 0, 0, 0.1);
   --border-color: #ccc;
   --error-color: #e74c3c;
@@ -116,7 +117,21 @@ nav {
   width: 1200px;
   max-width: 90vw;
   color: var(--white-color);
+}
+
+.nav-text {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.nav-text .app-name {
   font-size: 1.35rem;
+  user-select: none;
+}
+
+.nav-text .app-name + span {
+  color: var(--white-faded-color);
 }
 
 .spacing-large {
@@ -258,9 +273,12 @@ textarea {
 .essay-card h2 {
   color: var(--primary-color);
   margin-bottom: 0.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.essay-card .essay-description {
+.essay-card p {
   font-size: 0.95rem;
   color: var(--muted-text-color);
   display: -webkit-box;

@@ -8,7 +8,10 @@ export const Navbar = () => {
     <nav>
       <div className="nav-content">
         {isHomeRoute ? (
-          <div style={{ userSelect: "none" }}>Essay App</div>
+          <div className="nav-text">
+            <span className="app-name">Essay App</span>{" "}
+            <span>Easily write and correct essays</span>
+          </div>
         ) : (
           <a href="/" className="navigation-button">
             All Essays
