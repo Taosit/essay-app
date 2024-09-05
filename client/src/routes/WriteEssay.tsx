@@ -17,7 +17,7 @@ export const WriteEssay = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container fixed-height">
       <form onSubmit={handleSubmit} className="essay-form">
         <div className="essay-header">
           <Timer />

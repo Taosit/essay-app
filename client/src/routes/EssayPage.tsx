@@ -32,7 +32,12 @@ export const EssayPage = () => {
       <EssayWithToggles essay={essay} />
       <div className="essay-page-actions">
         <div>
-          <Link to={`/essays/${id}/correction`}>Correct this essay</Link>
+          <Link
+            className="button primary-button"
+            to={`/essays/${id}/correction`}
+          >
+            Correct this essay
+          </Link>
         </div>
         <div>
           <input type="hidden" name="essayId" value={params.id} />

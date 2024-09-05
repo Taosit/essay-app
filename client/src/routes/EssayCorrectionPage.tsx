@@ -16,7 +16,12 @@ export const EssayCorrectionPage = () => {
         Back to essay
       </Link>
       <div className="spacing-small" />
-      <div className="spacing" />
+      <div className="prompt">
+        To correct a word or a phrase,{" "}
+        <span className="select-span">select</span> the content and press{" "}
+        <img className="enter-icon" src="/enter.svg" alt="Enter key" />. Then
+        you can add a correction and optionally a comment.
+      </div>
       <Essay essay={essay} isEditable showCorrectedEssay />
     </div>
   );
