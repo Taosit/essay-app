@@ -16,7 +16,8 @@ namespace essay_app_c_sharp.Repository
 
         public Task<List<Correction>> GetCorrectionsForEssayAsync(int essayId)
         {
-            return _context.Corrections.Where(c => c.EssayId == essayId).ToListAsync();
+            throw new NotImplementedException();
+            // return _context.Corrections.Where(c => c.EssayId == essayId).ToListAsync();
         }
 
         public async Task CreateCorrectionAsync(Correction correction)
