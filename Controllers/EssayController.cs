@@ -10,9 +10,11 @@ namespace essay_app_c_sharp.Controllers
     public class EssayController: ControllerBase
     {
         private readonly IEssayRepository _essayRepository;
-        public EssayController(IEssayRepository essayRepository)
+        private readonly ILogger<EssayController> _logger;
+        public EssayController(IEssayRepository essayRepository, ILogger<EssayController> logger)
         {
             _essayRepository = essayRepository;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -26,6 +28,7 @@ namespace essay_app_c_sharp.Controllers
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetEssay([FromRoute] int id)
         {
+            _logger.LogInformation("GetEssay skyrocket");
             var essay = await _essayRepository.GetEssayWithCorrections(id);
             if (essay == null)
             {

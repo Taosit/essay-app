@@ -31,6 +31,9 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+
+// app.UseDeveloperExceptionPage();
+
 var logger = app.Services.GetRequiredService<ILogger<Program>>();
 
 app.UseExceptionHandler(errorApp =>
