@@ -1,6 +1,7 @@
 using essay_app_c_sharp.Data;
 using essay_app_c_sharp.Interfaces;
 using essay_app_c_sharp.Repository;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
@@ -30,6 +31,19 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+var logger = app.Services.GetRequiredService<ILogger<Program>>();
+
+app.UseExceptionHandler(errorApp =>
+{
+    errorApp.Run(async context =>
+    {
+        var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
+        if (exceptionHandlerPathFeature?.Error != null)
+        {
+            logger.LogError(exceptionHandlerPathFeature.Error, "An unhandled exception occurred.");
+        }
+    });
+});
 
 using (var scope = app.Services.CreateScope())
 {
