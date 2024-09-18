@@ -20,7 +20,8 @@ namespace essay_app_c_sharp.Repository
 
         public Task<Essay?> GetEssayWithCorrections(int id)
         {
-            return _context.Essays.Include(e => e.Corrections).FirstOrDefaultAsync(e => e.Id == id);
+            throw new NotImplementedException();
+            // return _context.Essays.Include(e => e.Corrections).FirstOrDefaultAsync(e => e.Id == id);
         }
 
         public async Task CreateEssayAsync(Essay essay)
